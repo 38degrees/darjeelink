@@ -1,0 +1,39 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Darjeelink</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tag %>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- App CSS -->
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+
+  <!-- External JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+
+  <!-- App JS -->
+  <%= javascript_include_tag "darjeelink/application" %>
+
+  <%= content_for :script_files %>
+
+</head>
+
+<body>
+
+  <div class="container-fluid <% if @wide_container %>wide-container<% end %>">
+    <%= yield %>
+  </div>
+
+  <%= content_for :render_async %>
+
+</body>
+
+</html>

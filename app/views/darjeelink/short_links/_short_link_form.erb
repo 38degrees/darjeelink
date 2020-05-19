@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-12">
+    <% if flash[:error] %>
+      <div class="fade in alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+
+    <%= form_with url: darjeelink.short_links_path, local: true do |f| %>
+      <div class="form-group">
+        <label for="url">Url</label>
+        <input type="url" class="form-control" id="long_url" name="url">
+      </div>
+      <div class="form-group">
+        <label for="shortened_path">Custom Path</label>
+        <input type="text" class="form-control" name="shortened_path">
+      </div>
+      <div>
+        <button type="submit">Shorten</button>
+      </div>
+    <% end %>
+  </div>
+</div>

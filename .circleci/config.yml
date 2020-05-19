@@ -1,0 +1,68 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+       - image: circleci/ruby:2.5.1-node-browsers
+         environment:
+           - RACK_ENV=test
+           - DATABASE_URL=postgres://ubuntu:@127.0.0.1:5432/darjeelink
+       - image: circleci/postgres:10.5
+         environment:
+           - POSTGRES_USER=ubuntu
+           - POSTGRES_DB=darjeelink
+
+    working_directory: ~/darjeelink
+
+    steps:
+      - checkout
+
+      - type: cache-restore
+        name: Restore bundle cache
+        key: darjeelink-rails-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Install System Dependencies
+          command: |
+            sudo apt-get install -y build-essential
+
+      - run:
+          name: Install Dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - type: cache-save
+        name: Store bundle cache
+        key: darjeelink-rails-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      - run:
+          name: Database Setup
+          command: bundle exec rake db:schema:load
+
+      - run:
+          name: Run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            bundle exec rspec
+
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
+      - run:
+          name: Audit Gemfile bundle for security issues
+          command: bundle exec bundle-audit check --update --ignore CVE-2015-9284
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results

@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="page-header">
+      <h2 class="text-center header-text">
+        Short Links
+      </h2>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 text-center">
+    <div class="btn-group">
+      <%= link_to "Tracking link generator", darjeelink.new_tracking_link_path, class: "btn btn-success" %>
+      <%= link_to "Create your shortened link", darjeelink.new_short_link_path, class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
+
+<br/>
+<div class="row text-center">
+  <div class="col-sm-4 col-sm-offset-4">
+    <%= form_tag("/short_links", method: "get") do %>
+      <div class="form-group">
+        <%= text_field_tag(:query, nil, class: 'form-control', placeholder: 'Search term') %>
+      </div>
+      <%= submit_tag("Search") %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th>Visits</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @short_links.each do |short_link| %>
+        <tr>
+          <td>
+            <a href="<%= short_link.url %>" target="_blank" id="copy-text">
+              <%= Darjeelink.domain + '/' + short_link.shortened_path %>
+            </a>
+            <button id="copy-btn" class="btn btn-info btn-sm" data-clipboard-text=<%= Darjeelink.domain + '/' + short_link.shortened_path %>>
+              <span class="glyphicon glyphicon-copy"></span>
+            </button>
+          </td>
+          <td>
+            <p>
+              <%= short_link.visits %>
+            </p>
+          </td>
+          <td>
+            <%= link_to "Edit", darjeelink.edit_short_link_path(short_link) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-md-12">
+        <%= will_paginate @short_links %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  new ClipboardJS('#copy-btn');
+</script>

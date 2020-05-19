@@ -1,0 +1,3 @@
+url, shortened_path, custom_path
+https://foo.com,foo,
+https://bar.com,bar,foo

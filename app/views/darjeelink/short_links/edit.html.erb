@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to "Back", darjeelink.short_links_path, class: "btn btn-default" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h1>Edit Short Link</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for @short_link, url: darjeelink.short_link_path do |f| %>
+      <div class="form-group">
+        <%= f.label :url %>
+        <%= f.url_field :url, class: "form-control", value: @short_link.url %>
+      </div>
+      <div class="form-group">
+        <%= f.label :custom_path %>
+        <%= f.text_field :shortened_path, class: "form-control", value: @short_link.shortened_path %>
+      </div>
+      <div>
+        <button type="submit">Update</button>
+      </div>
+    <% end %>
+  </div>
+</div>

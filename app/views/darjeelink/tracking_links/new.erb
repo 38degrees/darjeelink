@@ -1,0 +1,49 @@
+<% content_for :script_files do %>
+  <%= javascript_include_tag "darjeelink/tracking_link_generator" %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= link_to "Back", darjeelink.short_links_path, class: "btn btn-default" %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h1>Tracking Link Generator!</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form id="tracking">
+      <div class="form-group">
+        <label for="url">URL</label>
+        <input type="text" class="form-control" id="url">
+        <label for="source">Source - Medium</label>
+        <select class="form-control" id="source-medium">
+          <% Darjeelink.source_mediums.each do |key, value| %>
+            <option value="<%= key %>"><%= value %></option>
+          <% end %>
+        </select>
+        <label for="campaign">ID / Identifier (lower-case, underscores only)</label>
+        <input type="text" class="form-control" id="campaign">
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Your tracking link</h2>
+    <button id="copy-btn" class="btn btn-info btn-sm" data-clipboard-target="#long_url">
+      <span class="glyphicon glyphicon-copy"></span>
+    </button>
+  </div>
+</div>
+
+<%= render partial: 'darjeelink/short_links/short_link_form' %>
+
+<script>
+  new ClipboardJS('#copy-btn');
+</script>
