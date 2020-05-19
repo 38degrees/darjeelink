@@ -31,9 +31,12 @@ Run `cp .env.sample spec/dummy/.env.test`
 Change the database url to be different to the development one i.e. `postgres://darjeelink_dbuser:password@localhost/darjeelink-test`
 
 ## Installation
-### Installing the private gem
-Copy the contents of the darjeelink directory into the vendor folder in the
-darjeelink app repository and run bundle install
+### Gemfile
+Add these lines to your app's Gemfile
+```
+gem 'darjeelink'
+gem 'repost' # Shouldn't be required, but it is.  Investigate why
+```
 
 ### Mounting the engine
 Add these lines to your app's routes.rb
