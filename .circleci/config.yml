@@ -11,6 +11,7 @@ jobs:
          environment:
            - RACK_ENV=test
            - DATABASE_URL=postgres://ubuntu:@127.0.0.1:5432/darjeelink
+           - BUNDLER_VERSION=2.1.4
        - image: circleci/postgres:10.5
          environment:
            - POSTGRES_USER=ubuntu
@@ -33,9 +34,6 @@ jobs:
       - run:
           name: Install Dependencies
           command: |
-            gem install bundler:2.1.4
-            bundle update --bundler
-            bundle -v
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - type: cache-save
