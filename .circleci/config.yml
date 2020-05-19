@@ -34,6 +34,7 @@ jobs:
           name: Install Dependencies
           command: |
             gem install bundler:2.1.4
+            bundle -v
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - type: cache-save
