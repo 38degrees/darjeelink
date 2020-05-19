@@ -1,11 +1,11 @@
 PATH
   remote: .
   specs:
-    darjeelink (0.11.5)
+    darjeelink (0.11.6)
       bitly
       omniauth-google-oauth2
       pg
-      rails (~> 5.2.2)
+      rails (~> 5)
       rebrandly
       repost
       will_paginate

@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.version     = Darjeelink::VERSION
   s.authors     = ['James Hulme']
   s.email       = ['james@38degrees.org.uk']
-  s.homepage    = 'https://www.github.com/the-open'
+  s.homepage    = 'https://github.com/38dgs/darjeelink'
   s.summary     = 'URL Shortener'
   s.license     = 'MIT'
 
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bitly'
   s.add_dependency 'omniauth-google-oauth2'
   s.add_dependency 'pg'
-  s.add_dependency 'rails', '~> 5.2.2'
+  s.add_dependency 'rails', '~> 5'
   s.add_dependency 'rebrandly'
   s.add_dependency 'repost'
   s.add_dependency 'will_paginate'

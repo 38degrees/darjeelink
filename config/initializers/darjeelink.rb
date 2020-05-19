@@ -20,7 +20,8 @@ Darjeelink.configure do |config|
     'spotify': 'Spotify',
     'youtube': 'Youtube',
     'google-search': 'Google search',
-    'google-display': 'Google display'
+    'google-display': 'Google display',
+    'snapchat-advert': 'Snapchat Advert'
   }
 
   config.auth_domain = ENV['AUTH_DOMAIN']
