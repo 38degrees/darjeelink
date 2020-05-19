@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     darjeelink (0.11.6)
-      bitly
       omniauth-google-oauth2
       pg
       rails (~> 5)
@@ -57,8 +56,6 @@ GEM
     arel (9.0.0)
     ast (2.4.0)
     awesome_print (1.8.0)
-    bitly (2.0.0)
-      oauth2 (>= 0.5.0, < 2.0)
     builder (3.2.4)
     bundler-audit (0.6.1)
       bundler (>= 1.2.0, < 3)
