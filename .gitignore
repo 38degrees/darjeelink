@@ -12,6 +12,7 @@ spec/examples.txt
 *.gem
 
 *.env*
+!*.env.sample
 !*.env.*.sample
 
 .vagrant/
