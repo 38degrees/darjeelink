@@ -31,6 +31,8 @@ Run `cp .env.sample spec/dummy/.env.test`
 Change the database url to be different to the development one i.e. `postgres://darjeelink_dbuser:password@localhost/darjeelink-test`
 
 ## Releasing
+Darjeelink follows [Semantic Versioning](https://semver.org)
+
 Once all necessary changes have made it in to master and you are ready to do a release you need to do these steps:
 - Update `lib/darjeelink/version.rb` to the new version
 - Run `bundle install` to pick up the change in Gemfile.lock
