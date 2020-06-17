@@ -19,27 +19,6 @@ There is a UTM generator, where you can provide:
 - a campaign identifier
 And you can get a link with UTM params all filled in, and shortern it with one click.
 
-## Development
-The recommended approach is to use Vagrant. `vagrant up` will create an isolated darjeelink instance
-
-### Setup development environment
-Run `cp .env.sample spec/dummy/.env.development`
-Nothing else required
-
-### Setup test environment
-Run `cp .env.sample spec/dummy/.env.test`
-Change the database url to be different to the development one i.e. `postgres://darjeelink_dbuser:password@localhost/darjeelink-test`
-
-## Releasing
-Darjeelink follows [Semantic Versioning](https://semver.org)
-
-Once all necessary changes have made it in to master and you are ready to do a release you need to do these steps:
-- Update `lib/darjeelink/version.rb` to the new version
-- Run `bundle install` to pick up the change in Gemfile.lock
-- Go to `https://github.com/38dgs/darjeelink/releases` and create a release
-- Run `gem build darjeelink.gemspec` this will output a file `darjeelink-X.X.X.gem` the version should match what version.rb and github.
-- Run `gem push darjeelink-X.X.X.gem`
-
 ## Installation
 ### Gemfile
 Add these lines to your app's Gemfile
@@ -77,7 +56,31 @@ In `config/initializers/darjeelink.rb` edit the `config.source_mediums` hash.
 
 Each key is a hyphenated source-medium.  If you just want the source then omit the hyphen and medium.
 
-Each value is a slightly more readable version for display
+Each value is a slightly more readable version for display.
+
+## Development
+The recommended approach is to use Vagrant. `vagrant up` will create an isolated darjeelink instance.
+Before you run `vagrant up`, make sure to create `.env.development` & `.env.test` files as detailed below.
+
+### Setup development environment
+Run `cp .env.sample spec/dummy/.env.development`
+
+Nothing else required
+
+### Setup test environment
+Run `cp .env.sample spec/dummy/.env.test`
+
+Change the database url to be different to the development one i.e. `postgres://darjeelink_dbuser:password@localhost/darjeelink-test`
+
+## Releasing
+Darjeelink follows [Semantic Versioning](https://semver.org)
+
+Once all necessary changes have made it in to master and you are ready to do a release you need to do these steps:
+- Update `lib/darjeelink/version.rb` to the new version
+- Run `bundle install` to pick up the change in Gemfile.lock
+- Go to `https://github.com/38dgs/darjeelink/releases` and create a release
+- Run `gem build darjeelink.gemspec` this will output a file `darjeelink-X.X.X.gem` the version should match what version.rb and github.
+- Run `gem push darjeelink-X.X.X.gem`
 
 ## GDPR
 No personally identifiable data is stored about the public by this gem.
