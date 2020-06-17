@@ -9,6 +9,22 @@ RSpec.describe Darjeelink::ShortLink do
         .to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Url can't be blank")
     end
 
+    it 'rejects a url containing whitspace' do
+      expect { Darjeelink::ShortLink.create!(url: 'https://www.test.com ') }
+        .to raise_error(
+          ActiveRecord::RecordInvalid,
+          'Validation failed: Url must not contain any whitespace (spaces, tabs, etc)'
+        )
+    end
+
+    it 'rejects a shortened_path containing whitspace' do
+      expect { Darjeelink::ShortLink.create!(url: 'https://www.test.com', shortened_path: 'test ') }
+        .to raise_error(
+          ActiveRecord::RecordInvalid,
+          'Validation failed: Shortened path must not contain any whitespace (spaces, tabs, etc)'
+        )
+    end
+
     describe 'uniqueness' do
       context 'the exact shortened path already exists' do
         before do
@@ -42,15 +58,6 @@ RSpec.describe Darjeelink::ShortLink do
         link = Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: nil)
         expect(link.shortened_path).to be_present
       end
-    end
-  end
-
-  describe 'before validation' do
-    it 'strips whitespace' do
-      link = Darjeelink::ShortLink.create!(url: 'https://www.example.com ', shortened_path: 'foo ')
-
-      expect(link.url).to eq('https://www.example.com')
-      expect(link.shortened_path).to eq('foo')
     end
   end
 
