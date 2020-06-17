@@ -30,6 +30,14 @@ Nothing else required
 Run `cp .env.sample spec/dummy/.env.test`
 Change the database url to be different to the development one i.e. `postgres://darjeelink_dbuser:password@localhost/darjeelink-test`
 
+## Releasing
+Once all necessary changes have made it in to master and you are ready to do a release you need to do these steps:
+- Update `lib/darjeelink/version.rb` to the new version
+- Run `bundle install` to pick up the change in Gemfile.lock
+- Go to `https://github.com/38dgs/darjeelink/releases` and create a release
+- Run `gem build darjeelink.gemspec` this will output a file `darjeelink-X.X.X.gem` the version should match what version.rb and github.
+- Run `gem push darjeelink-X.X.X.gem`
+
 ## Installation
 ### Gemfile
 Add these lines to your app's Gemfile
