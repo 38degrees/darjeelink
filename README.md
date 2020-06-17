@@ -19,17 +19,6 @@ There is a UTM generator, where you can provide:
 - a campaign identifier
 And you can get a link with UTM params all filled in, and shortern it with one click.
 
-## Development
-The recommended approach is to use Vagrant. `vagrant up` will create an isolated darjeelink instance
-
-### Setup development environment
-Run `cp .env.sample spec/dummy/.env.development`
-Nothing else required
-
-### Setup test environment
-Run `cp .env.sample spec/dummy/.env.test`
-Change the database url to be different to the development one i.e. `postgres://darjeelink_dbuser:password@localhost/darjeelink-test`
-
 ## Installation
 ### Gemfile
 Add these lines to your app's Gemfile
@@ -67,7 +56,21 @@ In `config/initializers/darjeelink.rb` edit the `config.source_mediums` hash.
 
 Each key is a hyphenated source-medium.  If you just want the source then omit the hyphen and medium.
 
-Each value is a slightly more readable version for display
+Each value is a slightly more readable version for display.
+
+## Development
+The recommended approach is to use Vagrant. `vagrant up` will create an isolated darjeelink instance.
+Before you run `vagrant up`, make sure to create `.env.development` & `.env.test` files as detailed below.
+
+### Setup development environment
+Run `cp .env.sample spec/dummy/.env.development`
+
+Nothing else required
+
+### Setup test environment
+Run `cp .env.sample spec/dummy/.env.test`
+
+Change the database url to be different to the development one i.e. `postgres://darjeelink_dbuser:password@localhost/darjeelink-test`
 
 ## GDPR
 No personally identifiable data is stored about the public by this gem.
