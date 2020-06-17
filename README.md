@@ -72,6 +72,20 @@ Run `cp .env.sample spec/dummy/.env.test`
 
 Change the database url to be different to the development one i.e. `postgres://darjeelink_dbuser:password@localhost/darjeelink-test`
 
+## Releasing
+Darjeelink follows [Semantic Versioning](https://semver.org)
+
+Once all necessary changes have made it in to master and you are ready to do a release you need to do these steps.
+
+Note that if you are running in a vagrant VM, most of these steps can be done from within the VM.
+
+- Update `lib/darjeelink/version.rb` to the new version
+- Run `bundle install` to pick up the change in Gemfile.lock
+- Commit the changes to `lib/darjeelink/version.rb` and `Gemfile.lock`, and push them to GitHub
+- Go to `https://github.com/38dgs/darjeelink/releases` and create a release tag in GitHub
+- Run `gem build darjeelink.gemspec` this will output a file `darjeelink-X.X.X.gem` the version should match what version.rb and github.
+- Run `gem push darjeelink-X.X.X.gem`
+
 ## GDPR
 No personally identifiable data is stored about the public by this gem.
 It does not store information on individual clicks, only a counter of how many times a link has been clicked.
