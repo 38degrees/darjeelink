@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    darjeelink (0.11.7)
+    darjeelink (0.11.8)
       omniauth-google-oauth2
       pg
       rails (~> 5)
@@ -152,7 +152,7 @@ GEM
     rebrandly (0.1.5)
       httparty (~> 0.14)
     regexp_parser (1.7.1)
-    repost (0.3.2)
+    repost (0.3.3)
     rexml (3.2.4)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
