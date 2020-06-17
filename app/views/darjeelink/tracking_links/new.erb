@@ -14,35 +14,46 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <form id="tracking">
+<%= form_for @short_link, url: darjeelink.short_links_path, local: true do |f| %>
+  <div class="row" id="tracking">
+    <div class="col-md-12">
       <div class="form-group">
-        <label for="url">URL</label>
-        <input type="text" class="form-control" id="url">
-        <label for="source">Source - Medium</label>
-        <select class="form-control" id="source-medium">
-          <% Darjeelink.source_mediums.each do |key, value| %>
-            <option value="<%= key %>"><%= value %></option>
-          <% end %>
+        <label for="base-url">URL</label>
+        <input
+          type="text" class="form-control" id="base-url" name="base-url" required=true
+          pattern="https?://[^\s]+" placeholder="https://www.example.com"
+          title="URL, starting http:// or https:// - no whitespace (space, tab, etc) allowed"
+        >
+
+        <label for="source-medium">Source - Medium</label>
+        <select class="form-control" id="source-medium" name="source-medium">
+          <%= options_for_select(Darjeelink.source_mediums.map { |k,v| [v,k] }) %>
         </select>
+
         <label for="campaign">ID / Identifier (lower-case, underscores only)</label>
-        <input type="text" class="form-control" id="campaign">
+        <input
+          type="text" class="form-control" id="campaign" name="campaign" pattern="[^\s]*"
+          title="ID for the campaign - no whitespace (space, tab, etc) allowed"
+        >
       </div>
-    </form>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-12">
-    <h2>Your tracking link</h2>
-    <button id="copy-btn" class="btn btn-info btn-sm" data-clipboard-target="#long_url">
-      <span class="glyphicon glyphicon-copy"></span>
-    </button>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Your tracking link</h2>
+      <button id="copy-btn" class="btn btn-info btn-sm" data-clipboard-target="#long_url">
+        <span class="glyphicon glyphicon-copy"></span>
+      </button>
+    </div>
   </div>
-</div>
 
-<%= render partial: 'darjeelink/short_links/short_link_form' %>
+  <%= render partial: 'darjeelink/short_links/short_link_form', locals: { f: f, short_link: @short_link } %>
+
+  <div>
+    <%= f.submit "Create Tracking Link", class: "btn btn-primary" %>
+  </div>
+<% end %>
 
 <script>
   new ClipboardJS('#copy-btn');

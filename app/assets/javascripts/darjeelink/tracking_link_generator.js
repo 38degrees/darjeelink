@@ -1,5 +1,10 @@
 function generateTrackingLink(){
-  var url = $('#url').val();
+  var url = $('#base-url').val();
+  if (!url) {
+    document.getElementById("long_url").value = "";
+    return;
+  }
+
   var sourceMedium = $('#source-medium').val();
   var source = sourceMedium.split('-')[0];
   var medium = sourceMedium.split('-')[1];
@@ -28,7 +33,7 @@ $(document).ready(function(){
     generateTrackingLink();
   });
 
-  $("#tracking").keypress(function(){
+  $("#tracking").keyup(function(){
     generateTrackingLink();
   });
 

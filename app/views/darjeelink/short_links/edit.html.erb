@@ -13,16 +13,9 @@
 <div class="row">
   <div class="col-md-12">
     <%= form_for @short_link, url: darjeelink.short_link_path do |f| %>
-      <div class="form-group">
-        <%= f.label :url %>
-        <%= f.url_field :url, class: "form-control", value: @short_link.url %>
-      </div>
-      <div class="form-group">
-        <%= f.label :custom_path %>
-        <%= f.text_field :shortened_path, class: "form-control", value: @short_link.shortened_path %>
-      </div>
+      <%= render partial: 'short_link_form', locals: { f: f, short_link: @short_link } %>
       <div>
-        <button type="submit">Update</button>
+        <%= f.submit "Update Shortlink", class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>

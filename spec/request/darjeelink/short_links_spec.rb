@@ -55,7 +55,7 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
     it 'redirects to the index page' do
       post(
         darjeelink.short_links_path,
-        params: { url: 'https://example.org', shortened_path: '' }
+        params: { short_link: { url: 'https://example.org', shortened_path: '' } }
       )
 
       expect(response.status).to eq(302)
@@ -66,7 +66,7 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
         it 'creates a short link with a generated path' do
           post(
             darjeelink.short_links_path,
-            params: { url: 'https://example.org', shortened_path: '' }
+            params: { short_link: { url: 'https://example.org', shortened_path: '' } }
           )
 
           expect(Darjeelink::ShortLink.last.shortened_path.present?).to eq(true)
@@ -75,21 +75,9 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
 
       context 'when a custom path is passed' do
         it 'creates a short link with the passed path' do
-          shortened_url = Darjeelink::ShortLink.create!(
-            url: 'https://example.org',
-            shortened_path: 'test'
-          )
-
-          expect(Darjeelink::ShortLink)
-            .to receive(:create!)
-            .with(
-              url: 'https://example.org',
-              shortened_path: 'test'
-            ).and_return(shortened_url)
-
           post(
             darjeelink.short_links_path,
-            params: { url: 'https://example.org', shortened_path: 'test' }
+            params: { short_link: { url: 'https://example.org', shortened_path: 'test' } }
           )
 
           expect(Darjeelink::ShortLink.last.shortened_path).to eq('test')
@@ -103,7 +91,7 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
 
           post(
             darjeelink.short_links_path,
-            params: { url: 'https://example.org', shortened_path: 'test' }
+            params: { short_link: { url: 'https://example.org', shortened_path: 'test' } }
           )
 
           expect(flash[:error]).to be_present
@@ -116,7 +104,7 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
 
           post(
             darjeelink.short_links_path,
-            params: { url: 'www.google.com', shortened_path: 'test' } # No https:// bit - invalid
+            params: { short_link: { url: 'www.google.com', shortened_path: 'test' } } # No https:// bit - invalid
           )
 
           expect(flash[:error]).to be_present
@@ -129,7 +117,7 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
         expect(Darjeelink::ShortLink).not_to receive(:create!)
         post(
           darjeelink.short_links_path,
-          params: { url: '', shortened_path: 'test' }
+          params: { short_link: { url: '', shortened_path: 'test' } }
         )
       end
     end

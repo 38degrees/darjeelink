@@ -5,8 +5,8 @@ module Darjeelink
     skip_before_action :check_ip_whitelist, only: :show
     skip_before_action :authenticate, only: :show
 
-    before_action :check_url_present, only: :create
-    before_action :check_url_valid, only: :create
+    before_action :check_url_present, only: %i[create update]
+    before_action :check_url_valid, only: %i[create update]
 
     class ShortLinkNotFoundError < StandardError
     end
@@ -18,17 +18,13 @@ module Darjeelink
     end
 
     def new
+      @short_link = Darjeelink::ShortLink.new
     end
 
     def create
-      begin
-        Darjeelink::ShortLink.create!(url: params[:url], shortened_path: params[:shortened_path])
-      rescue ActiveRecord::RecordNotUnique
-        flash[:error] = "#{params[:shortened_path]} already used! Choose a different custom path"
-        return redirect_to(darjeelink.new_short_link_path)
+      handle_create_or_update(error_redirect_path: darjeelink.new_short_link_path) do
+        Darjeelink::ShortLink.create!(short_link_params)
       end
-
-      redirect_to(darjeelink.short_links_path)
     end
 
     def edit
@@ -37,9 +33,10 @@ module Darjeelink
 
     def update
       @short_link = Darjeelink::ShortLink.find(params[:id])
-      @short_link.update!(short_link_params)
 
-      redirect_to(darjeelink.short_links_path)
+      handle_create_or_update(error_redirect_path: darjeelink.edit_short_link_path(@short_link)) do
+        @short_link.update!(short_link_params)
+      end
     end
 
     def show
@@ -56,6 +53,22 @@ module Darjeelink
     end
 
     private
+
+    def handle_create_or_update(error_redirect_path:)
+      return unless block_given?
+
+      begin
+        yield
+      rescue ActiveRecord::RecordNotUnique
+        flash[:error] = "#{params[:shortened_path]} already used! Choose a different custom path"
+        return redirect_to(error_redirect_path)
+      rescue ActiveRecord::RecordInvalid => e
+        flash[:error] = e.message.to_s
+        return redirect_to(error_redirect_path)
+      end
+
+      redirect_to(darjeelink.short_links_path)
+    end
 
     def log_missing_shortlink(shortened_path)
       Rails.logger.warn("ShortLink not found: #{shortened_path}")
@@ -95,14 +108,14 @@ module Darjeelink
     end
 
     def check_url_present
-      return if params[:url].present?
+      return if params[:short_link].present? && params[:short_link][:url].present?
 
       flash[:error] = 'URL cannot be blank'
       redirect_to(darjeelink.new_short_link_path)
     end
 
     def check_url_valid
-      return if params[:url] =~ URI::DEFAULT_PARSER.make_regexp
+      return if params[:short_link].present? && params[:short_link][:url] =~ URI::DEFAULT_PARSER.make_regexp
 
       flash[:error] = 'URL is not valid.  Does it have https:// and are there any spaces?'
       redirect_to(darjeelink.new_short_link_path)

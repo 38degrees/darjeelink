@@ -9,4 +9,9 @@
     <h1>New Short Link</h1>
   </div>
 </div>
-<%= render partial: 'short_link_form' %>
+<%= form_for @short_link, url: darjeelink.short_links_path, local: true do |f| %>
+  <%= render partial: 'short_link_form', locals: { f: f, short_link: @short_link } %>
+  <div>
+    <%= f.submit "Create Shortlink", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -3,9 +3,12 @@
 module Darjeelink
   class ShortLink < ApplicationRecord
     after_save :generate_short_link
-    before_validation :strip_white_space
 
     validates_presence_of :url
+    validates :url, :shortened_path, format: {
+      without: /\s/,
+      message: 'must not contain any whitespace (spaces, tabs, etc)'
+    }
 
     class << self
       def search(query)
@@ -48,11 +51,6 @@ module Darjeelink
       end
 
       generated_path.join('').reverse
-    end
-
-    def strip_white_space
-      url&.strip!
-      shortened_path&.strip!
     end
   end
 end
