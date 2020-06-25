@@ -21,7 +21,8 @@ Darjeelink.configure do |config|
     'youtube': 'Youtube',
     'google-search': 'Google search',
     'google-display': 'Google display',
-    'snapchat-advert': 'Snapchat Advert'
+    'snapchat-advert': 'Snapchat Advert',
+    'digitalorganiser-share': 'Digital Organiser'
   }
 
   config.auth_domain = ENV['AUTH_DOMAIN']
