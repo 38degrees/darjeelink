@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    darjeelink (0.11.8)
+    darjeelink (0.11.9)
       omniauth-google-oauth2
       pg
       rails (~> 5)
