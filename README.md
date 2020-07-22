@@ -1,4 +1,4 @@
-# Darjeelink
+# Darjeelink FOO
 
 ## What is it?
 Darjeelink is a very simple link shortener gem.
