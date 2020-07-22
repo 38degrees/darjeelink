@@ -1,4 +1,5 @@
 # Darjeelink
+IGNORE
 
 ## What is it?
 Darjeelink is a very simple link shortener gem.
