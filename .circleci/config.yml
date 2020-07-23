@@ -59,6 +59,10 @@ jobs:
           command: bundle exec rubocop
 
       - run:
+          name: Static security analysis on the application codebase
+          command: bundle exec brakeman --quiet -f plain
+
+      - run:
           name: Audit Gemfile bundle for security issues
           command: bundle exec bundle-audit check --update --ignore CVE-2015-9284
 

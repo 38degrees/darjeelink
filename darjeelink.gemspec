@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'will_paginate'
 
   s.add_development_dependency 'awesome_print'
+  s.add_development_dependency 'brakeman'
   s.add_development_dependency 'bundler-audit'
   s.add_development_dependency 'dotenv-rails'
   s.add_development_dependency 'rspec-rails'
