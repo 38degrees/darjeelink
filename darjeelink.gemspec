@@ -11,9 +11,10 @@ Gem::Specification.new do |s|
   s.version     = Darjeelink::VERSION
   s.authors     = ['James Hulme']
   s.email       = ['james@38degrees.org.uk']
-  s.homepage    = 'https://github.com/38dgs/darjeelink'
+  s.homepage    = 'https://github.com/38degrees/darjeelink'
   s.summary     = 'URL Shortener'
   s.license     = 'MIT'
+  s.required_ruby_version = '>= 2.6'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 

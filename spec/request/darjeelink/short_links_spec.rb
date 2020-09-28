@@ -37,7 +37,7 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
           .with(page: '1', per_page: 20)
           .and_return(short_links)
 
-        get(darjeelink.short_links_path(page: 1) + '&query=foo')
+        get("#{darjeelink.short_links_path(page: 1)}&query=foo")
 
         expect(response.status).to eq 200
       end

@@ -82,7 +82,7 @@ Note that if you are running in a vagrant VM, most of these steps can be done fr
 - Update `lib/darjeelink/version.rb` to the new version
 - Run `bundle install` to pick up the change in Gemfile.lock
 - Commit the changes to `lib/darjeelink/version.rb` and `Gemfile.lock`, and push them to GitHub
-- Go to `https://github.com/38dgs/darjeelink/releases` and create a release tag in GitHub
+- Go to `https://github.com/38degrees/darjeelink/releases` and create a release tag in GitHub
 - Run `gem build darjeelink.gemspec` this will output a file `darjeelink-X.X.X.gem` the version should match what version.rb and github.
 - Run `gem push darjeelink-X.X.X.gem`
 
