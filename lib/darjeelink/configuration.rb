@@ -2,11 +2,7 @@
 
 module Darjeelink
   class Configuration
-    attr_accessor :domain
-    attr_accessor :source_mediums
-    attr_accessor :auth_domain
-    attr_accessor :rebrandly_api_key
-    attr_accessor :fallback_url
+    attr_accessor :domain, :source_mediums, :auth_domain, :rebrandly_api_key, :fallback_url
 
     def initialize
       @domain = nil
