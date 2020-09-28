@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.version     = Darjeelink::VERSION
   s.authors     = ['James Hulme']
   s.email       = ['james@38degrees.org.uk']
-  s.homepage    = 'https://github.com/38dgs/darjeelink'
+  s.homepage    = 'https://github.com/38degrees/darjeelink'
   s.summary     = 'URL Shortener'
   s.license     = 'MIT'
 
