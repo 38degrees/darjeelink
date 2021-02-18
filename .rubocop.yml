@@ -4,6 +4,7 @@ AllCops:
     - 'spec/dummy/**/*'
     - 'vendor/**/*'
     - 'Vagrantfile'
+    - 'app/controllers/darjeelink/short_links_controller.rb'
 
 Style/Documentation:
   Enabled: False
