@@ -10,7 +10,7 @@ RSpec.describe Darjeelink::RebrandlyImporter do
   end
 
   describe 'import' do
-    let(:rebrandly_link_1) do
+    let(:rebrandly_link1) do
       link = Rebrandly::Link.new
       link.id = '1'
       link.slashtag = 'foo'
@@ -30,7 +30,7 @@ RSpec.describe Darjeelink::RebrandlyImporter do
       link
     end
 
-    let(:rebrandly_link_2) do
+    let(:rebrandly_link2) do
       link = Rebrandly::Link.new
       link.id = '2'
       link.slashtag = 'bar'
@@ -40,7 +40,7 @@ RSpec.describe Darjeelink::RebrandlyImporter do
       link
     end
 
-    let(:rebrandly_link_3) do
+    let(:rebrandly_link3) do
       link = Rebrandly::Link.new
       link.id = '3'
       link.slashtag = 'foobar'
@@ -65,7 +65,7 @@ RSpec.describe Darjeelink::RebrandlyImporter do
 
       expect(api).to receive(:links)
         .with(last: nil)
-        .and_return([rebrandly_link_1, rebrandly_link_2])
+        .and_return([rebrandly_link1, rebrandly_link2])
 
       expect(Darjeelink::ShortLink)
         .to receive(:create!)
@@ -75,7 +75,7 @@ RSpec.describe Darjeelink::RebrandlyImporter do
         .to receive(:create!)
         .with(url: 'https://bar.com', shortened_path: 'bar', visits: 50)
 
-      expect(api).to receive(:links).with(last: '2').and_return([rebrandly_link_3])
+      expect(api).to receive(:links).with(last: '2').and_return([rebrandly_link3])
 
       expect(Darjeelink::ShortLink)
         .to receive(:create!)
@@ -94,7 +94,7 @@ RSpec.describe Darjeelink::RebrandlyImporter do
         expect(api)
           .to receive(:links)
           .with(last: nil)
-          .and_return([rebrandly_link_1, rebrandly_link_1_duplicate_slashtag])
+          .and_return([rebrandly_link1, rebrandly_link_1_duplicate_slashtag])
 
         expect(Rails.logger).to receive(:info).with('Imported 1 links from Rebrandly')
         expect(Rails.logger).to receive(:warn).with("Duplicates:\nhttps://bar.com/foo")

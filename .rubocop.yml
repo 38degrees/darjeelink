@@ -5,6 +5,9 @@ AllCops:
     - 'vendor/**/*'
     - 'Vagrantfile'
 
+Lint/DuplicateBranch:
+  Exclude:
+    - 'app/controllers/darjeelink/short_links_controller.rb'
 Style/Documentation:
   Enabled: False
 
