@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
   s.add_dependency 'omniauth-google-oauth2'
+  s.add_dependency 'omniauth', '~> 1.9'
   s.add_dependency 'pg'
   s.add_dependency 'rails', '~> 5'
   s.add_dependency 'rebrandly'
