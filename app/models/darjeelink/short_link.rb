@@ -50,7 +50,7 @@ module Darjeelink
         i /= base
       end
 
-      generated_path.join('').reverse
+      generated_path.join.reverse
     end
   end
 end
