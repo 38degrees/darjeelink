@@ -70,9 +70,8 @@ Vagrant.configure("2") do |config|
   # SHELL
 
   # Based on https://reinteractive.com/posts/305-vagrant-up-your-rails-development
-  ruby_version = File.read(File.expand_path('.ruby-version', __dir__)).to_s.chomp
   config.vm.provision :shell, path: 'vagrant_provision_scripts/install-packages.sh'
   config.vm.provision :shell, path: "vagrant_provision_scripts/install-rvm.sh", args: "stable", privileged: false
-  config.vm.provision :shell, path: "vagrant_provision_scripts/install-ruby.sh", args: ruby_version, privileged: false
+  config.vm.provision :shell, path: "vagrant_provision_scripts/install-ruby.sh", privileged: false
   config.vm.provision :shell, path: "vagrant_provision_scripts/setup-app.sh", privileged: false
 end
