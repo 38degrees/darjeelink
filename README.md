@@ -19,6 +19,46 @@ There is a UTM generator, where you can provide:
 - a campaign identifier
 And you can get a link with UTM params all filled in, and shortern it with one click.
 
+## API
+There is an API available to create short links.
+To create a short link via the API:
+
+First, create an api token `Darjeelink::ApiToken.create!(username: <username>, active: true)`.
+Then grab the token.
+
+Next, make a request
+```
+POST /api
+Authorization => Token token=<username>:<token>
+{
+  short_link: {
+    url: 'https://www.example.com',
+    shortened_path: 'xmpl' (optional)
+  }
+}
+```
+
+If successful you will get a response like:
+```
+STATUS 201
+{
+  short_link: <shortened_url>
+}
+```
+
+If unsuccessful you will get a response like
+```
+STATUS 400
+{
+  error: "information on what went wrong"
+}
+```
+
+If authorization failed you will get a response like
+```
+STATUS 401
+{}
+```
 ## Installation
 ### Gemfile
 Add these lines to your app's Gemfile
