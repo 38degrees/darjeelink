@@ -37,6 +37,8 @@ Authorization => Token token=<username>:<token>
   }
 }
 ```
+`url` is the absolute URI that you wish to shorten
+`shortened_path` is the path that you will visit to get redirected to your original link.  It is optional.  If it is not provided one will be generated automatically
 
 If successful you will get a response like:
 ```
