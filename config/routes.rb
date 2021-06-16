@@ -5,6 +5,7 @@ Darjeelink::Engine.routes.draw do
 
   resources :short_links
   resources :tracking_links, only: :new
+  resources :api, only: :create
 
   # OmniAuth
   get '/auth/:provider/callback', to: 'sessions#create'
