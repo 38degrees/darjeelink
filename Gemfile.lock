@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    darjeelink (0.11.10)
+    darjeelink (0.12.0)
       omniauth (~> 1.9)
       omniauth-google-oauth2
       pg
@@ -228,7 +228,7 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
-    websocket-driver (0.7.4)
+    websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     will_paginate (3.3.0)
