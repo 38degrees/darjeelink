@@ -14,6 +14,8 @@ Darjeelink.configure do |config|
     'sms-blast': 'SMS Blast',
     'google-advert': 'Google advert',
     'instagram-advert': 'Instagram Advert',
+    'instagram-post': 'Instagram Post',
+    'instagram-story': 'Instagram Story',
     chatbot: 'Chatbot',
     template: 'Template',
     other: 'Other',
