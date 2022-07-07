@@ -5,6 +5,9 @@ AllCops:
     - 'spec/dummy/**/*'
     - 'vendor/**/*'
     - 'Vagrantfile'
+    - 'config/*'
+    - 'config/initializers/*'
+    - 'spec/spec_helper.rb'
 
 Lint/DuplicateBranch:
   Exclude:
