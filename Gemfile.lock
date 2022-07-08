@@ -76,7 +76,7 @@ GEM
     awesome_print (1.9.2)
     brakeman (5.0.4)
     builder (3.2.4)
-    bundler-audit (0.8.0)
+    bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
     concurrent-ruby (1.1.10)
