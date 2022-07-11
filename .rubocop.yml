@@ -1,10 +1,13 @@
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
     - 'spec/dummy/**/*'
     - 'vendor/**/*'
     - 'Vagrantfile'
+    - 'config/*'
+    - 'config/initializers/*'
+    - 'spec/spec_helper.rb'
 
 Lint/DuplicateBranch:
   Exclude:
