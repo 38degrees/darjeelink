@@ -4,6 +4,7 @@ module Darjeelink
   class ApiController < Darjeelink::ApplicationController
     skip_before_action :check_ip_whitelist
     skip_before_action :authenticate
+    skip_before_action :verify_authenticity_token
 
     before_action :authenticate_token
 
