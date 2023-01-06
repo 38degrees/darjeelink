@@ -34,7 +34,7 @@ module Darjeelink
       update!(shortened_path: auto_generate_shortened_path)
     end
 
-    ALPHABET = (('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a + ['-', '_']).freeze
+    ALPHABET = (('a'..'z').to_a + ('0'..'9').to_a + ['-', '_']).freeze
 
     def auto_generate_shortened_path
       # from http://refactormycode.com/codes/125-base-62-encoding
