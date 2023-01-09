@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'securerandom'
 
 module Darjeelink
   class ShortLink < ApplicationRecord
@@ -34,23 +35,9 @@ module Darjeelink
       update!(shortened_path: auto_generate_shortened_path)
     end
 
-    ALPHABET = (('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a + ['-', '_']).freeze
-
     def auto_generate_shortened_path
-      # from http://refactormycode.com/codes/125-base-62-encoding
-      # with only minor modification
-      i = id
-      return ALPHABET[0] if i.zero?
-
-      generated_path = []
-      base = ALPHABET.length
-
-      while i.positive?
-        generated_path << ALPHABET[i.modulo(base)]
-        i /= base
-      end
-
-      generated_path.join.reverse
+      # our current db has a case insensitive constraint so we might as well downcase here before we get to db level
+      SecureRandom.urlsafe_base64(2).downcase
     end
   end
 end
