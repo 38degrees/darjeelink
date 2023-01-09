@@ -88,9 +88,9 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
       context 'when it is a duplicate custom path' do
         random = SecureRandom.urlsafe_base64(1).downcase
         it 'autogenerate a new short link and flash an error' do
-          expect(Darjeelink::ShortLink).to receive(:create!)
+          expect(Darjeelink::ShortLink).to receive(:create!).twice
             .and_raise(ActiveRecord::RecordNotUnique)
-            
+
           post(
             darjeelink.short_links_path,
             params: { short_link: { url: 'https://example.org', shortened_path: 'test' } }
