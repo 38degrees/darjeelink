@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'securerandom'
 
 class Airbrake
   def self.notify(*args)
@@ -85,13 +86,19 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
       end
 
       context 'when it is a duplicate custom path' do
-        it 'displays a warning to the user' do
+        random = SecureRandom.urlsafe_base64(1).downcase
+        it 'autogenerate a new short link and flash an error' do
           expect(Darjeelink::ShortLink).to receive(:create!)
             .and_raise(ActiveRecord::RecordNotUnique)
-
+            
           post(
             darjeelink.short_links_path,
             params: { short_link: { url: 'https://example.org', shortened_path: 'test' } }
+          )
+
+          post(
+            darjeelink.short_links_path,
+            params: { short_link: { url: 'https://example.org', shortened_path: %{"#{random}"}} }
           )
 
           expect(flash[:error]).to be_present
