@@ -32,7 +32,12 @@ module Darjeelink
     def generate_short_link
       return if shortened_path.present?
 
-      update!(shortened_path: auto_generate_shortened_path)
+      begin
+        update!(shortened_path: auto_generate_shortened_path)
+      rescue ActiveRecord::RecordNotUnique
+         # we want to keep on trying till we get a non conflicting version
+        retry
+      end
     end
 
     def auto_generate_shortened_path
