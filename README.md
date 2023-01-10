@@ -101,7 +101,10 @@ Each key is a hyphenated source-medium.  If you just want the source then omit t
 Each value is a slightly more readable version for display.
 
 ## Development
-The recommended approach is to use Vagrant. `vagrant up` will create an isolated darjeelink instance.
+
+Docker can be used to run tests easily - 'docker-compose up' should run the unit tests.
+
+Another approach is to use Vagrant. `vagrant up` will create an isolated darjeelink instance.
 Before you run `vagrant up`, make sure to create `.env.development` & `.env.test` files as detailed below.
 
 ### Setup development environment
