@@ -19,7 +19,7 @@ services:
     tty: true
     depends_on:
       - postgres
-    command: sh -c 'cd app ; bundle config set --local path /bundle/ && bundle check || bundle install && bundle exec rails db:setup && bundle exec rails db:setup RAILS_ENV=test && bundle exec rspec'
+    command: sh /app/docker-run.sh
     volumes:
       # Use cached bind mount for mac performance
       - '.:/app:cached'
