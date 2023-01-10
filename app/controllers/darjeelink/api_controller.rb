@@ -16,10 +16,19 @@ module Darjeelink
         status: :created
       )
     rescue ActiveRecord::RecordNotUnique
-      render(
-        json: { error: "#{short_link_params[:shortened_path]} already used! Choose a different custom path" },
-        status: :bad_request
-      )
+      if short_link_params[:shortened_path] == ''
+        random = SecureRandom.urlsafe_base64(1).downcase
+        short_link = Darjeelink::ShortLink.create!(short_link_params[:url], shortened_path: "#{random}")
+        render(
+          json: { short_link: "#{Darjeelink.domain}/#{short_link.shortened_path}" },
+          status: :created
+        )
+      else
+        render(
+          json: { error: "#{short_link_params[:shortened_path]} already used! Choose a different custom path" },
+          status: :bad_request
+        )
+      end
     rescue ActiveRecord::RecordInvalid => e
       render(
         json: { error: e.message.to_s },

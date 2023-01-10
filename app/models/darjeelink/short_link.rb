@@ -37,7 +37,7 @@ module Darjeelink
 
     def auto_generate_shortened_path
       # our current db has a case insensitive constraint so we might as well downcase here before we get to db level
-      SecureRandom.urlsafe_base64(2).downcase
+      SecureRandom.urlsafe_base64(3).downcase
     end
   end
 end
