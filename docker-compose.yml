@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  ##### Concrete services #####
+  postgres:
+    image: 'postgres:9.6-alpine'
+    environment:
+      # The Postgres image uses these to create a db user - note the user/pass here should match that in your env file!
+      - POSTGRES_USER=darjeelink_dbuser
+      - POSTGRES_PASSWORD=password
+    ports:
+      # Many developers have a local postgres install running on port 5432, or so use a different port
+      # Other docker containers can use 5432, but use 2346 if connecting direct to the DB from your local machine
+      - '2346:5432'
+
+  test:
+    image: 'ruby:3.1.2'
+    stdin_open: true
+    tty: true
+    depends_on:
+      - postgres
+    command: sh /app/docker-run.sh
+    volumes:
+      # Use cached bind mount for mac performance
+      - '.:/app:cached'
+      - bundle_cache:/bundle
+
+
+volumes:
+  bundle_cache:
+
+
