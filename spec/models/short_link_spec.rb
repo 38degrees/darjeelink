@@ -58,6 +58,14 @@ RSpec.describe Darjeelink::ShortLink do
         link = Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: nil)
         expect(link.shortened_path).to be_present
       end
+
+      it 'retries until it generates a unique shortened_path' do
+        Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: "aaa")
+        allow(described_class).to receive(:auto_generate_shortened_path).and_return("aaa", "aab")
+
+        link = Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: nil)
+        expect(link.shortened_path).to eq("aab")
+      end 
     end
   end
 
