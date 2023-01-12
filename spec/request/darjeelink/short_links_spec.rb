@@ -95,7 +95,6 @@ RSpec.describe '/darjeelink/short_links requests', type: :request do
             params: { short_link: { url: 'https://example.org', shortened_path: 'test' } }
           )
 
-
           expect(flash[:error]).to be_present
         end
       end

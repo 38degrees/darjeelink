@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'securerandom'
 
 module Darjeelink
@@ -41,7 +42,7 @@ module Darjeelink
         update!(shortened_path: self.class.auto_generate_shortened_path)
         # because there are no uniqueness validations on the model, ActiveRecord:RecordNotUnique is not raised
       rescue ActiveRecord::RecordNotUnique
-         # we want to keep on trying till we get a non conflicting version
+        # we want to keep on trying till we get a non conflicting version
         retry
       end
     end
