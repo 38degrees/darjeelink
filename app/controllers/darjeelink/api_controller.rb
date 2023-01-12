@@ -20,12 +20,7 @@ module Darjeelink
         json: { error: "#{short_link_params[:shortened_path]} already used! Choose a different custom path" },
         status: :bad_request
       )
-      else
-        render(
-          json: { error: "#{short_link_params[:shortened_path]} already used! Choose a different custom path" },
-          status: :bad_request
-        )
-      end
+     
     rescue ActiveRecord::RecordInvalid => e
       render(
         json: { error: e.message.to_s },
