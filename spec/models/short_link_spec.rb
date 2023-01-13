@@ -78,7 +78,7 @@ RSpec.describe Darjeelink::ShortLink do
         allow(described_class).to receive(:auto_generate_shortened_path).and_return('aaa', 'aab', 'aac', 'aad', 'aae')
 
         expect do
-          Darjeelink::ShortLink.create!(url: 'https://www.test.com', shortened_path: nil )
+          Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: nil )
         end.to raise_error(ActiveRecord::RecordNotUnique)
       end
     end
