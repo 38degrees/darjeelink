@@ -4,11 +4,12 @@ require 'securerandom'
 
 module Darjeelink
   class ShortLink < ApplicationRecord
+    # ActiveRecord::RecordNotUnique error unable to be raised in a transaction that is not committed so this was changed from after_save to after_commit
     after_commit :generate_short_link
 
     def self.auto_generate_shortened_path
       # our current db has a case insensitive constraint so we might as well downcase here before we get to db level
-      SecureRandom.urlsafe_base64(3).downcase
+      pp SecureRandom.urlsafe_base64(3).downcase
     end
 
     validates_presence_of :url
@@ -39,11 +40,17 @@ module Darjeelink
       return if shortened_path.present?
 
       begin
+        attempt ||= 0
         update!(shortened_path: self.class.auto_generate_shortened_path)
-        # because there are no uniqueness validations on the model, ActiveRecord:RecordNotUnique is not raised
       rescue ActiveRecord::RecordNotUnique
-        # we want to keep on trying till we get a non conflicting version
-        retry
+        # we only want to try 5 times to prevent infinite loop
+        attempt += 1
+        puts "#{attempt} in rescue block"
+        if attempt <= 5
+          retry
+        else
+          raise
+        end
       end
     end
   end
