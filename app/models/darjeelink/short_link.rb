@@ -45,7 +45,11 @@ module Darjeelink
       rescue ActiveRecord::RecordNotUnique
         # we only want to try 5 times to prevent infinite loop
         attempt += 1
-        raise unless attempt <= 5
+        if attempt <= 5
+          retry
+        else
+          raise
+        end
       end
     end
   end
