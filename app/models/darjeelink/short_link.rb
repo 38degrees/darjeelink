@@ -4,7 +4,7 @@ require 'securerandom'
 
 module Darjeelink
   class ShortLink < ApplicationRecord
-    # ActiveRecord::RecordNotUnique error unable to be raised in a transaction that is not committed so this was changed from after_save to after_commit
+    # ActiveRecord::RecordNotUnique error unable to be raised in a transaction that is not committed so this was changed to after_commit
     after_commit :generate_short_link
 
     def self.auto_generate_shortened_path
@@ -45,12 +45,7 @@ module Darjeelink
       rescue ActiveRecord::RecordNotUnique
         # we only want to try 5 times to prevent infinite loop
         attempt += 1
-        puts "#{attempt} in rescue block"
-        if attempt <= 5
-          retry
-        else
-          raise
-        end
+        raise unless attempt <= 5
       end
     end
   end
