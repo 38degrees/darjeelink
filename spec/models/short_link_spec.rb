@@ -52,11 +52,34 @@ RSpec.describe Darjeelink::ShortLink do
     end
   end
 
-  describe 'after save' do
+  describe 'after commit' do
     context 'when no shortened_path is provided' do
       it 'generates a new one' do
         link = Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: nil)
         expect(link.shortened_path).to be_present
+      end
+
+      it 'retries until it generates a unique shortened_path' do
+        Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: 'aaa')
+        allow(described_class).to receive(:auto_generate_shortened_path).and_return('aaa', 'aab')
+
+        link = Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: nil)
+        expect(link.shortened_path).to eq('aab')
+      end
+
+      it 'retries only 5 times' do
+        Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: 'aaa')
+        Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: 'aab')
+        Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: 'aac')
+        Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: 'aad')
+        Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: 'aae')
+        Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: 'aaf')
+
+        allow(described_class).to receive(:auto_generate_shortened_path).and_return('aaa', 'aab', 'aac', 'aad', 'aae')
+
+        expect do
+          Darjeelink::ShortLink.create!(url: 'https://www.example.com', shortened_path: nil)
+        end.to raise_error(ActiveRecord::RecordNotUnique)
       end
     end
   end

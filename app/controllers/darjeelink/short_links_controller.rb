@@ -60,7 +60,7 @@ module Darjeelink
       begin
         yield
       rescue ActiveRecord::RecordNotUnique
-        flash[:error] = "#{params[:shortened_path]} already used! Choose a different custom path"
+        flash[:error] = "#{short_link_params[:shortened_path]} already used! Choose a different custom path"
         return redirect_to(error_redirect_path)
       rescue ActiveRecord::RecordInvalid => e
         flash[:error] = e.message.to_s
