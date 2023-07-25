@@ -8,5 +8,5 @@ Darjeelink::Engine.routes.draw do
   resources :api, only: :create
 
   # OmniAuth
-  post '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create'
 end

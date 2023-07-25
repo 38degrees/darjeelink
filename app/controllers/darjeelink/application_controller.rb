@@ -25,7 +25,7 @@ module Darjeelink
       # related locally
       return if Rails.env.development?
 
-      redirect_post '/auth/google_oauth2'
+      redirect_post('/auth/google_oauth2', options: { authenticity_token: :auto })
     end
   end
 end
