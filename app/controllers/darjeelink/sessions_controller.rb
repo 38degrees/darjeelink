@@ -7,7 +7,6 @@ module Darjeelink
         update_session
         redirect_to '/'
       else
-        puts 'OH DEAR FORBIDDEN AUTH'
         render plain: 'Access Denied', status: :forbidden
       end
     end
