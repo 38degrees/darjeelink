@@ -27,5 +27,14 @@ module Darjeelink
 
       redirect_post('/auth/google_oauth2', options: { authenticity_token: :auto })
     end
+
+    def auth_failure
+      render inline: \
+      <<~HTML
+        <div>You reached this due to an error in OmniAuth</div>
+        <div>Strategy: #{params['strategy']}</div>
+        <div>Message: #{params['message']}</div>
+      HTML
+    end
   end
 end

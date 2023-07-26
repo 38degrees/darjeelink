@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'omniauth', '~> 2'
   s.add_dependency 'omniauth-google-oauth2', '~> 1'
-  s.add_dependency 'omniauth-rails_csrf_protection'
+  s.add_dependency 'omniauth-rails_csrf_protection', '~> 1'
   s.add_dependency 'pg'
   s.add_dependency 'rails', '~> 6'
   s.add_dependency 'rebrandly'

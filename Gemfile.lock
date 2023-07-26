@@ -4,7 +4,7 @@ PATH
     darjeelink (0.14.0)
       omniauth (~> 2)
       omniauth-google-oauth2 (~> 1)
-      omniauth-rails_csrf_protection
+      omniauth-rails_csrf_protection (~> 1)
       pg
       rails (~> 6)
       rebrandly
