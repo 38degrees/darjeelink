@@ -7,15 +7,6 @@ module Darjeelink
     before_action :check_ip_whitelist
     before_action :authenticate
 
-    def auth_failure
-      render inline: \
-      <<~HTML
-        <div>You reached this due to an error in OmniAuth</div>
-        <div>Strategy: #{params['strategy']}</div>
-        <div>Message: #{params['message']}</div>
-      HTML
-    end
-
     private
 
     # Check user IP address against whitelist from ENV
@@ -34,7 +25,11 @@ module Darjeelink
       # related locally
       return if Rails.env.development?
 
-      redirect_post('/auth/google_oauth2', options: { authenticity_token: :auto })
+      puts 'start token'
+      puts form_authenticity_token
+      puts 'end token'
+      # redirect_post('/auth/google_oauth2', options: { authenticity_token: :auto })
+      redirect_post('/auth/google_oauth2', params: { authenticity_token: form_authenticity_token })
     end
   end
 end
