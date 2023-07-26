@@ -28,7 +28,7 @@ module Darjeelink
       puts 'Redirecting to /auth/google_oauth2'
       puts 'Redirecting to /auth/google_oauth2'
 
-      redirect_post('/auth/google_oauth2', options: { authenticity_token: :auto })
+      redirect_post('/auth/google_oauth2', params: { authenticity_token: form_authenticity_token }, options: { authenticity_token: :auto })
     end
   end
 end
