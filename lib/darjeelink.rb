@@ -7,6 +7,7 @@ require 'will_paginate/active_record'
 
 require 'omniauth'
 require 'omniauth-google-oauth2'
+require 'omniauth-rails_csrf_protection'
 
 require 'darjeelink/engine'
 require 'darjeelink/configuration'
