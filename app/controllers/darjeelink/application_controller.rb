@@ -24,8 +24,10 @@ module Darjeelink
       # Seperate line to make it easier to disable the bypass if doing some auth
       # related locally
       return if Rails.env.development?
+      
+      Rails.logger.info "Session authenticity_token: #{session[:_csrf_token]}"
+      Rails.logger.info "form_authenticity_token: #{form_authenticity_token}"
 
-      # redirect_post('/auth/google_oauth2', options: { authenticity_token: :auto })
       redirect_post('/auth/google_oauth2', params: { form_authenticity_token: form_authenticity_token })
     end
   end
