@@ -29,6 +29,9 @@ module Darjeelink
       # related locally
       return if Rails.env.development?
       
+      puts "Session authenticity_token: #{session[:_csrf_token]}"
+      puts "form_authenticity_token: #{form_authenticity_token}"
+      
       Rails.logger.info "Session authenticity_token: #{session[:_csrf_token]}"
       Rails.logger.info "form_authenticity_token: #{form_authenticity_token}"
 
