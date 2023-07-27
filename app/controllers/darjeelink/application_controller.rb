@@ -5,7 +5,11 @@ module Darjeelink
     protect_from_forgery with: :exception
 
     before_action :check_ip_whitelist
-    before_action :authenticate
+    # before_action :authenticate
+
+    def test
+      render :inline => "<%= button_to ‘Log in with Google’, ‘/auth/google_oauth2’, method: :post %>"
+    end
 
     private
 
@@ -26,7 +30,7 @@ module Darjeelink
       return if Rails.env.development?
 
       # redirect_post('/auth/google_oauth2', options: { authenticity_token: :auto })
-      redirect_post('/auth/google_oauth2', params: { form_authenticity_token: form_authenticity_token })
+      redirect_post('/auth/google_oauth2', params: { authenticity_token: form_authenticity_token })
     end
   end
 end
