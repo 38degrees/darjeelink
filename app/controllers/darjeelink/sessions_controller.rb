@@ -3,8 +3,6 @@
 module Darjeelink
   class SessionsController < Darjeelink::ApplicationController
     def create
-      puts 'Creating Session'
-      puts "request.env['omniauth.auth'] is #{request.env['omniauth.auth']}"
       if auth_domain.present? && auth_domain == Darjeelink.auth_domain
         update_session
         redirect_to '/'

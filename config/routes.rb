@@ -9,4 +9,5 @@ Darjeelink::Engine.routes.draw do
 
   # OmniAuth
   get '/auth/:provider/callback', to: 'sessions#create'
+  get '/nic', to: 'application#test'
 end
