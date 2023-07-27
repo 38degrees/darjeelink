@@ -5,7 +5,7 @@ module Darjeelink
     protect_from_forgery with: :exception
 
     before_action :check_ip_whitelist
-    # before_action :authenticate
+    before_action :authenticate
 
     def test
       render :inline => "<%= button_to ‘Log in with Google’, ‘/auth/google_oauth2’, method: :post %>"
