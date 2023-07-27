@@ -25,11 +25,8 @@ module Darjeelink
       # related locally
       return if Rails.env.development?
 
-      puts 'start token'
-      puts form_authenticity_token
-      puts 'end token'
       # redirect_post('/auth/google_oauth2', options: { authenticity_token: :auto })
-      redirect_post('/auth/google_oauth2', params: { authenticity_token: form_authenticity_token })
+      redirect_post('/auth/google_oauth2', params: { form_authenticity_token: form_authenticity_token })
     end
   end
 end
