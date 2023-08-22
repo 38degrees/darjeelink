@@ -4,6 +4,7 @@
 Darjeelink.configure do |config|
   config.domain = ENV['DOMAIN']
 
+  # keep in alphabetical order, execpt for 'other' which should be last
   config.source_mediums = {
     chatbot: 'Chatbot',
     'digitalorganiser-share': 'Digital Organiser',
