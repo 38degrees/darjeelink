@@ -23,6 +23,7 @@ Metrics/MethodLength:
 
 Metrics/BlockLength:
   Max: 30
+  CountAsOne: ['hash']
   IgnoredMethods: ['describe', 'context']
 
 Style/EmptyMethod:
