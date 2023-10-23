@@ -4,27 +4,33 @@
 Darjeelink.configure do |config|
   config.domain = ENV['DOMAIN']
 
+  # keep in alphabetical order, execpt for 'other' which should be last
   config.source_mediums = {
+    chatbot: 'Chatbot',
+    'digitalorganiser-share': 'Digital Organiser',
     'email-blast': 'Email blast',
     'email-thankyou': 'Email - Thank you',
-    'facebook-post': 'Facebook post',
     'facebook-advert': 'Facebook advert',
-    'twitter-tweet': 'Twitter tweet',
-    'twitter-advert': 'Twitter advert',
-    'sms-blast': 'SMS Blast',
+    'facebook-post': 'Facebook post',
     'google-advert': 'Google advert',
-    'instagram-advert': 'Instagram Advert',
-    'instagram-post': 'Instagram Post',
-    'instagram-story': 'Instagram Story',
-    chatbot: 'Chatbot',
-    template: 'Template',
-    other: 'Other',
-    spotify: 'Spotify',
-    youtube: 'Youtube',
-    'google-search': 'Google search',
     'google-display': 'Google display',
-    'snapchat-advert': 'Snapchat Advert',
-    'digitalorganiser-share': 'Digital Organiser'
+    'google-search': 'Google search',
+    'instagram-advert': 'Instagram advert',
+    'instagram-post': 'Instagram post',
+    'instagram-reel': 'Instagram reel',
+    'instagram-story': 'Instagram story',
+    'linkedin-post': 'LinkedIn post',
+    'sms-blast': 'SMS blast',
+    'snapchat-advert': 'Snapchat advert',
+    spotify: 'Spotify',
+    template: 'Template',
+    'tiktok-advert': 'TikTok advert',
+    'tiktok-post': 'TikTok post',
+    'twitter-advert': 'Twitter advert',
+    'twitter-tweet': 'Twitter tweet',
+    'whatsapp-share': 'WhatsApp share',
+    youtube: 'Youtube',
+    other: 'Other'
   }
 
   config.auth_domain = ENV['AUTH_DOMAIN']

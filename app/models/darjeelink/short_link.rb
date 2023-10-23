@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
+require 'securerandom'
+
 module Darjeelink
   class ShortLink < ApplicationRecord
-    after_save :generate_short_link
+    # ActiveRecord::RecordNotUnique error unable to be raised in a transaction that is not committed
+    after_commit :generate_short_link
+
+    def self.auto_generate_shortened_path
+      # our current db has a case insensitive constraint so we might as well downcase here before we get to db level
+      pp SecureRandom.urlsafe_base64(3).downcase
+    end
 
     validates_presence_of :url
     validates :url, :shortened_path, format: {
@@ -31,26 +39,14 @@ module Darjeelink
     def generate_short_link
       return if shortened_path.present?
 
-      update!(shortened_path: auto_generate_shortened_path)
-    end
-
-    ALPHABET = (('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a + ['-', '_']).freeze
-
-    def auto_generate_shortened_path
-      # from http://refactormycode.com/codes/125-base-62-encoding
-      # with only minor modification
-      i = id
-      return ALPHABET[0] if i.zero?
-
-      generated_path = []
-      base = ALPHABET.length
-
-      while i.positive?
-        generated_path << ALPHABET[i.modulo(base)]
-        i /= base
+      begin
+        attempt ||= 0
+        update!(shortened_path: self.class.auto_generate_shortened_path)
+      rescue ActiveRecord::RecordNotUnique
+        # we only want to try 5 times to prevent infinite loop
+        attempt += 1
+        attempt <= 5 ? retry : raise
       end
-
-      generated_path.join.reverse
     end
   end
 end
