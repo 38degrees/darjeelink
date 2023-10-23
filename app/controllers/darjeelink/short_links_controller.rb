@@ -90,7 +90,7 @@ module Darjeelink
       # Prevents adding a ? to the end of the url if there are no params
       uri.query = short_link_params.to_query if short_link_params.present?
 
-      CGI:escape(uri.to_s)
+      CGI.escape(uri.to_s)
     end
 
     def merge_params(original_params, new_params)
