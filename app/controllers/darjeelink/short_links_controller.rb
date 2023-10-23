@@ -75,9 +75,12 @@ module Darjeelink
     end
 
     def build_url(url)
-      uri = URI(url)
+      uri = Addressable::URI.parse(url)
+      #uri = URI(url)
 
-      original_params = Rack::Utils.parse_query(uri.query)
+      original_params =  uri.query_values
+      #original_params = Rack::Utils.parse_query(uri.query)
+
       # Strong params - throws an error if we just use except.  So we have to
       # permit everything first
       new_params = params.permit!.except(:controller, :action, :id)
