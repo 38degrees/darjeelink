@@ -76,10 +76,10 @@ module Darjeelink
 
     def build_url(url)
       uri = Addressable::URI.parse(url)
-      #uri = URI(url)
+      # uri = URI(url)
 
-      original_params =  uri.query_values
-      #original_params = Rack::Utils.parse_query(uri.query)
+      original_params = uri.query_values
+      # original_params = Rack::Utils.parse_query(uri.query)
 
       # Strong params - throws an error if we just use except.  So we have to
       # permit everything first
@@ -88,21 +88,27 @@ module Darjeelink
       short_link_params = merge_params(original_params, new_params)
 
       # Prevents adding a ? to the end of the url if there are no params
+
       uri.query = short_link_params.to_query if short_link_params.present?
 
-      CGI.escape(uri.to_s)
+      uri.to_s
+      # CGI.escape(uri.to_s)
     end
 
     def merge_params(original_params, new_params)
       # if there are duplicates, new params value will take priority
-      original_params.merge(new_params) do |_key, original_value, new_value|
-        if original_value.present? && new_value.present?
-          new_value
-        elsif original_value.present?
-          original_value
-        else
-          new_value
+      if original_params
+        original_params.merge(new_params) do |_key, original_value, new_value|
+          if original_value.present? && new_value.present?
+            new_value
+          elsif original_value.present?
+            original_value
+          else
+            new_value
+          end
         end
+      else
+        new_params
       end
     end
 
