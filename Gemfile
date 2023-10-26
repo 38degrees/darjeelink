@@ -10,6 +10,8 @@ gem 'net-smtp' # to send email
 # Alternative URI.parse implementation that can handle utf-8
 gem 'addressable'
 
+gem 'psych', '~> 3.3'
+
 # Declare your gem's dependencies in darjeelink.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
