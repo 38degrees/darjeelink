@@ -7,9 +7,6 @@ gem 'net-imap' # for rspec
 gem 'net-pop'  # for rspec
 gem 'net-smtp' # to send email
 
-# Alternative URI.parse implementation that can handle utf-8
-gem 'addressable'
-
 # Declare your gem's dependencies in darjeelink.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
