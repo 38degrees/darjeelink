@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    darjeelink (0.14.2)
+    darjeelink (0.14.3)
       omniauth (~> 1.9)
       omniauth-google-oauth2
       pg
@@ -74,6 +74,7 @@ GEM
       zeitwerk (~> 2.3)
     ast (2.4.2)
     awesome_print (1.9.2)
+    base64 (0.2.0)
     brakeman (5.0.4)
     builder (3.2.4)
     bundler-audit (0.9.1)
@@ -88,19 +89,20 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.12.0)
-    faraday (2.7.10)
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
-    faraday-net_http (3.0.2)
-    globalid (1.1.0)
-      activesupport (>= 5.0)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-net_http (3.1.0)
+      net-http
+    globalid (1.2.1)
+      activesupport (>= 6.1)
     hashie (5.0.0)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    jwt (2.7.1)
+    jwt (2.8.0)
+      base64
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -111,11 +113,13 @@ GEM
       net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
-    mini_mime (1.1.2)
+    mini_mime (1.1.5)
     mini_portile2 (2.8.4)
     minitest (5.19.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.3.7)
       date
       net-protocol
@@ -125,7 +129,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.9)
+    nio4r (2.7.0)
     nokogiri (1.15.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -149,7 +153,7 @@ GEM
     parallel (1.20.1)
     parser (3.0.1.1)
       ast (~> 2.4.1)
-    pg (1.5.3)
+    pg (1.5.5)
     racc (1.7.1)
     rack (2.2.7)
     rack-test (2.1.0)
@@ -187,7 +191,7 @@ GEM
     rebrandly (0.1.5)
       httparty (~> 0.14)
     regexp_parser (2.1.1)
-    repost (0.4.1)
+    repost (0.4.2)
     rexml (3.2.5)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
@@ -218,8 +222,7 @@ GEM
     rubocop-ast (1.7.0)
       parser (>= 3.0.1.1)
     ruby-progressbar (1.11.0)
-    ruby2_keywords (0.0.5)
-    sprockets (4.2.0)
+    sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
     sprockets-rails (3.4.2)
@@ -231,6 +234,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
+    uri (0.13.0)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)

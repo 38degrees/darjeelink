@@ -13,7 +13,9 @@ module Darjeelink
     def check_ip_whitelist
       return unless Rails.env.production?
       return unless Rails.application.config.permitted_ips
-      return if Rails.application.config.permitted_ips.split(',').include? request.ip
+      ip_to_verify = Rails.application.client_ip_header ? request.headers[Rails.application.client_ip_header ] : request.ip
+
+      return if Rails.application.config.permitted_ips.split(',').include? ip_to_verify
 
       render plain: 'Access Denied', status: :forbidden
     end
