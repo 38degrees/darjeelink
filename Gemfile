@@ -7,7 +7,14 @@ gem 'net-imap' # for rspec
 gem 'net-pop'  # for rspec
 gem 'net-smtp' # to send email
 
+gem 'rails', '>= 6.1.7.5'
+gem 'activestorage', '>= 6.1.7.7'
+gem 'activesupport', '>= 6.1.7.5'
+
 gem 'omniauth', '>= 1.9', '< 3.0'
+
+gem 'nokogiri', '>= 1.16.2'
+gem 'rack', '>= 2.2.8.1'
 
 # Declare your gem's dependencies in darjeelink.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
