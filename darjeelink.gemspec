@@ -26,10 +26,27 @@ Gem::Specification.new do |s|
   s.add_dependency 'repost'
   s.add_dependency 'will_paginate'
 
+  # TODO: - MAybe we shoulf have a rubcop config for this instead?
+  #
+  # rubocop:disable Gemspec/DevelopmentDependencies
   s.add_development_dependency 'awesome_print'
   s.add_development_dependency 'brakeman'
   s.add_development_dependency 'bundler-audit'
   s.add_development_dependency 'dotenv-rails'
   s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'rubocop'
+  # rubocop:enable Gemspec/DevelopmentDependencies
+
+  # TODO: Remove the above and these dependencies to the Gemfile.
+  #
+  # group :development, :test do
+  #   gem 'awesome_print'
+  #   gem 'brakeman'
+  #   gem 'bundler-audit'
+  #   gem 'dotenv-rails'
+  #   gem 'rspec-rails'
+  #   gem 'rubocop'
+  # end
+
+  s.metadata['rubygems_mfa_required'] = 'true'
 end

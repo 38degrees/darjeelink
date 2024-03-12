@@ -24,7 +24,7 @@ module Darjeelink
 
     def create_short_link(url, auto_generated_key, custom_key)
       shortened_path = custom_key.present? ? custom_key : auto_generated_key
-      ::Darjeelink::ShortLink.create!(url: url, shortened_path: shortened_path)
+      ::Darjeelink::ShortLink.create!(url:, shortened_path:)
     rescue ActiveRecord::RecordNotUnique
       duplicates << "#{url}/#{custom_key || auto_generated_key}"
     end

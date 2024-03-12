@@ -7,9 +7,9 @@ gem 'net-imap' # for rspec
 gem 'net-pop'  # for rspec
 gem 'net-smtp' # to send email
 
-gem 'rails', '>= 6.1.7.5'
 gem 'activestorage', '>= 6.1.7.7'
 gem 'activesupport', '>= 6.1.7.5'
+gem 'rails', '>= 6.1.7.5'
 
 gem 'omniauth', '>= 1.9', '< 3.0'
 

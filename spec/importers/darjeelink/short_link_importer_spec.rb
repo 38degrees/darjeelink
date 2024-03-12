@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Darjeelink::ShortLinkImporter do
-  let(:test_data_path) { "#{::Rails.root}/../importers/test_data/short_links.csv" }
+  let(:test_data_path) { "#{Rails.root}/../importers/test_data/short_links.csv" }
 
   describe 'import' do
     it 'imports the csv' do
@@ -23,7 +23,7 @@ RSpec.describe Darjeelink::ShortLinkImporter do
     end
 
     context 'when different urls have the same custom path' do
-      let(:test_data_path) { "#{::Rails.root}/../importers/test_data/short_links_duplicates.csv" }
+      let(:test_data_path) { "#{Rails.root}/../importers/test_data/short_links_duplicates.csv" }
 
       it 'handles the error and logs duplicates for manual fixing' do
         expect(Rails.logger).to receive(:warn).with("Duplicates:\nhttps://bar.com/foo")
