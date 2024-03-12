@@ -7,7 +7,6 @@ gem 'net-imap' # for rspec
 gem 'net-pop'  # for rspec
 gem 'net-smtp' # to send email
 
-
 gem 'omniauth', '>= 1.9', '< 3.0'
 
 # Declare your gem's dependencies in darjeelink.gemspec.

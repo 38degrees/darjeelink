@@ -9,11 +9,20 @@ module Darjeelink
 
     private
 
+    def determine_ip_to_verify
+      if Rails.application.client_ip_header
+        request.headers[Rails.application.client_ip_header]
+      else
+        request.ip
+      end
+    end
+
     # Check user IP address against whitelist from ENV
     def check_ip_whitelist
       return unless Rails.env.production?
       return unless Rails.application.config.permitted_ips
-      ip_to_verify = Rails.application.client_ip_header ? request.headers[Rails.application.client_ip_header ] : request.ip
+
+      ip_to_verify = determine_ip_to_verify
 
       return if Rails.application.config.permitted_ips.split(',').include? ip_to_verify
 
