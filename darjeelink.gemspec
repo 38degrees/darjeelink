@@ -18,15 +18,15 @@ Gem::Specification.new do |s|
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
-  s.add_dependency 'omniauth', '~> 1.9'
+  s.add_dependency 'omniauth', '~> 1.9', '< 3.0'
   s.add_dependency 'omniauth-google-oauth2'
   s.add_dependency 'pg'
-  s.add_dependency 'rails', '~> 6'
+  s.add_dependency 'rails', '~> 6.1.7'
   s.add_dependency 'rebrandly'
   s.add_dependency 'repost'
   s.add_dependency 'will_paginate'
 
-  # TODO: - MAybe we shoulf have a rubcop config for this instead?
+  # TODO: - Maybe we shoulf have a rubcop config for this instead?
   #
   # rubocop:disable Gemspec/DevelopmentDependencies
   s.add_development_dependency 'awesome_print'
@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop'
   # rubocop:enable Gemspec/DevelopmentDependencies
 
-  # TODO: Remove the above and these dependencies to the Gemfile.
+  # TODO: Remove the above and add these dependencies to the Gemfile.
   #
   # group :development, :test do
   #   gem 'awesome_print'

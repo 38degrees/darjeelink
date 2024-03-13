@@ -131,6 +131,10 @@ Note that if you are running in a vagrant VM, most of these steps can be done fr
 - Run `gem build darjeelink.gemspec` this will output a file `darjeelink-X.X.X.gem` the version should match what version.rb and github.
 - Run `gem push darjeelink-X.X.X.gem`
 
+## TODOs
+
+We have a few TODOs in the project. Please grep for TODO in the codebase to see them, and consider picking one up during maintainance.
+
 ## GDPR
 No personally identifiable data is stored about the public by this gem.
 It does not store information on individual clicks, only a counter of how many times a link has been clicked.
