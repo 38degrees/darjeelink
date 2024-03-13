@@ -251,8 +251,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activestorage (~> 6.1.7)
-  activesupport (~> 6.1.7)
   awesome_print
   brakeman
   bundler-audit
@@ -261,10 +259,6 @@ DEPENDENCIES
   net-imap
   net-pop
   net-smtp
-  nokogiri (~> 1.16.2)
-  omniauth (~> 1.9, < 3.0)
-  rack (~> 2.2.8.1)
-  rails (~> 6.1.7)
   rspec-rails
   rubocop
 
