@@ -53,7 +53,7 @@ module Darjeelink
     def valid_authorization_token?(username_token)
       username, token = username_token.split ':'
 
-      stored_token = ApiToken.find_by(username: username, active: true)&.token
+      stored_token = ApiToken.find_by(username:, active: true)&.token
       return false if stored_token.nil?
 
       ActiveSupport::SecurityUtils.secure_compare(

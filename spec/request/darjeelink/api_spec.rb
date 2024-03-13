@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe '/darjeelink/api', type: :request do
-  subject(:request) { post(darjeelink.api_index_path, params: params, headers: headers) }
+  subject(:request) { post(darjeelink.api_index_path, params:, headers:) }
 
   let(:api_token) { Darjeelink::ApiToken.create!(username: 'rspec', active: true) }
   let(:headers) { {} }
