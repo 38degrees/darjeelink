@@ -13,12 +13,15 @@ module Darjeelink
     #
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Layout/LineLength
+    # Check user IP address against whitelist from ENV
     def check_ip_whitelist
       return unless Rails.env.production?
       return unless Rails.application.config.permitted_ips
-      return if Rails.application.config.permitted_ips.split(',').include? request.ip
-
-      ip_to_verify = Rails.application.client_ip_header ? request.headers[Rails.application.client_ip_header] : request.ip
+      ip_to_verify = if Rails.application.config.respond_to?(:client_ip_header) && Rails.application.config.client_ip_header.present?
+          request.headers[Rails.application.config.client_ip_header]
+        else
+          request.ip
+        end
 
       return if Rails.application.config.permitted_ips.split(',').include? ip_to_verify
 
