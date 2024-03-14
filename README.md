@@ -120,9 +120,32 @@ Change the database url to be different to the development one i.e. `postgres://
 ## Releasing
 Darjeelink follows [Semantic Versioning](https://semver.org)
 
+### Pre-releasing - Staging tests
+There are several ways to test the gem before releasing it.
+
+One way, is to check the new development branch into Github, and then use `portkey-app` to test it in a staging environment.
+
+- Create a new branch in the `darjeelink` repo with a sensible name related to your intended release: e.g. `darjeelink-v0.14.6-upgrade`.
+  - Perform the required upgrades, security patching, etc for the new release.
+  - Bump the version number as required (see below).
+- Create a new branch in the `portkey-app` repo with a sensible name related to your intdended release: e.g. `darjeelink-v0.14.6-upgrade`.
+- In the `Gemfile` of the portkey-app repo, change the `darjeelink` gem to point to the branch you just created in the darjeelink repo.
+  ```gemfile
+  # Actual URL Shortener
+  # gem 'darjeelink' <-- Temporarilly change this. Remeber to change it back, and run bundle install to update the Gemfile.locl
+  gem 'darjeelink', git: 'https://github.com/38degrees/darjeelink.git',
+                    branch: 'DEVOPS-31-maintainance-feb-2004-v0.14.6'
+  ```
+- Update t he `Gemfile.lock` in the `portkey-app` repo by running `bundle install` and commit then push the changes.
+- Deploy the `portkey-app` to the staging environment and test the changes.
+
+NB: When you have followed the production release steps below and created a GitHub release, you can then update the `Gemfile` in the `portkey-app` repo to point to the new release tag. 
+
+### Releasing - Production
+
 Once all necessary changes have made it in to master and you are ready to do a release you need to do these steps.
 
-Note that if you are running in a vagrant VM, most of these steps can be done from within the VM.
+Note that if you are running in a vagrant VM or ` docker-shell.sh constainer, most of these steps can be done from the terminal session.
 
 - Update `lib/darjeelink/version.rb` to the new version
 - Run `bundle install` to pick up the change in Gemfile.lock
