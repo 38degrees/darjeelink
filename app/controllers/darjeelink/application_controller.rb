@@ -9,25 +9,27 @@ module Darjeelink
 
     private
 
-    def determine_ip_to_verify
-      if Rails.application.client_ip_header
-        request.headers[Rails.application.client_ip_header]
-      else
-        request.ip
-      end
-    end
-
+    # Disabling these rubocop rules. This is a simple function and tested in production sinve version 0.14.4.
+    #
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Layout/LineLength
     # Check user IP address against whitelist from ENV
     def check_ip_whitelist
       return unless Rails.env.production?
       return unless Rails.application.config.permitted_ips
 
-      ip_to_verify = determine_ip_to_verify
+      ip_to_verify = if Rails.application.config.respond_to?(:client_ip_header) && Rails.application.config.client_ip_header.present?
+                       request.headers[Rails.application.config.client_ip_header]
+                     else
+                       request.ip
+                     end
 
       return if Rails.application.config.permitted_ips.split(',').include? ip_to_verify
 
       render plain: 'Access Denied', status: :forbidden
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Layout/LineLength
 
     # Authenticate against Google OAuth
     def authenticate
