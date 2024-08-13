@@ -29,6 +29,7 @@ Darjeelink.configure do |config|
     'twitter-advert': 'Twitter advert',
     'twitter-tweet': 'Twitter tweet',
     'whatsapp-share': 'WhatsApp share',
+    'what-action': 'WhatAction',
     youtube: 'Youtube',
     other: 'Other'
   }
