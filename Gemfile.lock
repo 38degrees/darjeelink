@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    darjeelink (0.14.6)
+    darjeelink (0.14.8)
       omniauth (~> 1.9, < 3.0)
       omniauth-google-oauth2
       pg
@@ -263,4 +263,4 @@ DEPENDENCIES
   rubocop
 
 BUNDLED WITH
-   2.3.7
+   2.5.17
