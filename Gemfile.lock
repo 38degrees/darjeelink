@@ -196,7 +196,7 @@ GEM
       httparty (~> 0.14)
     regexp_parser (2.9.0)
     repost (0.4.2)
-    rexml (3.2.6)
+    rexml (3.3.9)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.0)
