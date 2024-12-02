@@ -6,6 +6,7 @@ Darjeelink.configure do |config|
 
   # keep in alphabetical order, execpt for 'other' which should be last
   config.source_mediums = {
+    'bluesky': 'BlueSky',
     chatbot: 'Chatbot',
     'digitalorganiser-share': 'Digital Organiser',
     'email-blast': 'Email blast',
