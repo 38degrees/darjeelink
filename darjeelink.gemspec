@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'omniauth', '~> 1.9', '< 3.0'
   s.add_dependency 'omniauth-google-oauth2'
   s.add_dependency 'pg'
-  s.add_dependency 'rails', '~> 7.0.0'
+  s.add_dependency 'rails', '>= 7.0.0', '< 8.0'
   s.add_dependency 'rebrandly'
   s.add_dependency 'repost'
   s.add_dependency 'will_paginate'

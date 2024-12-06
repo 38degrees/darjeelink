@@ -5,7 +5,7 @@ PATH
       omniauth (~> 1.9, < 3.0)
       omniauth-google-oauth2
       pg
-      rails (~> 7.0.0)
+      rails (>= 7.0.0, < 8.0)
       rebrandly
       repost
       will_paginate
