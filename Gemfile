@@ -7,6 +7,9 @@ gem 'net-imap' # for rspec
 gem 'net-pop'  # for rspec
 gem 'net-smtp' # to send email
 
+gem 'sprockets'
+gem 'sprockets-rails'
+
 # Declare your gem's dependencies in darjeelink.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
