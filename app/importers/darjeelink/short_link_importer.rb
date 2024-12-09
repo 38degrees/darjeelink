@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module Darjeelink
   class ShortLinkImporter
     def initialize(path_to_csv)
