@@ -7,5 +7,4 @@
 # bundle exec rspec
 # bundle exec rails db:setup RAILS_ENV=test
 
-# docker run -it --rm -v "${PWD}:/app" -w /app ruby:3.1.0 bash
-docker run -it --rm -v "${PWD}:/app" -w /app ruby:3.1.3 bash
+docker run -it --rm -v "${PWD}:/app" -w /app ruby:3.4.5 bash

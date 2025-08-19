@@ -7,7 +7,7 @@
 # This script provides a menu-based interface to manage Docker containers
 # for Ruby development. It allows you to:
 #
-# 1. Start a new container with Ruby 3.1.3 and your project files mounted
+# 1. Start a new container with Ruby 3.4.5 and your project files mounted
 # 2. Commit changes made in the container to a new image or replace the current image
 # 3. Start a new container from an existing image with your project files mounted
 #
@@ -25,7 +25,7 @@
 
 # Function to start a new container with the necessary Ruby version
 start_container() {
-    docker run -it --rm --name my-ruby-container -v "${PWD}:/app" -w /app ruby:3.1.3 bash
+    docker run -it --rm --name my-ruby-container -v "${PWD}:/app" -w /app ruby:3.4.5 bash
 }
 
 # Function to commit changes to a new image
