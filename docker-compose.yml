@@ -3,7 +3,7 @@ version: '3'
 services:
   ##### Concrete services #####
   postgres:
-    image: 'postgres:9.6-alpine'
+    image: 'cimg/postgres:10.22'
     environment:
       # The Postgres image uses these to create a db user - note the user/pass here should match that in your env file!
       - POSTGRES_USER=darjeelink_dbuser
@@ -14,7 +14,7 @@ services:
       - '2346:5432'
 
   test:
-    image: 'ruby:3.1.2'
+    image: 'cimg/ruby:3.4.5-browsers'
     stdin_open: true
     tty: true
     depends_on:
