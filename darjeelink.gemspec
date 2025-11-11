@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop'
   # rubocop:enable Gemspec/DevelopmentDependencies
 
-  spec.post_install_message = <<~MSG
+  s.post_install_message = <<~MSG
     ⚠️  WARNING: This gem is no longer maintained ⚠️
     
     This project has been archived and will receive no further updates.
