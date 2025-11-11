@@ -37,16 +37,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop'
   # rubocop:enable Gemspec/DevelopmentDependencies
 
-  # TODO: Remove the above and add these dependencies to the Gemfile.
-  #
-  # group :development, :test do
-  #   gem 'awesome_print'
-  #   gem 'brakeman'
-  #   gem 'bundler-audit'
-  #   gem 'dotenv-rails'
-  #   gem 'rspec-rails'
-  #   gem 'rubocop'
-  # end
+  spec.post_install_message = <<~MSG
+    ⚠️  WARNING: This gem is no longer maintained ⚠️
+    
+    This project has been archived and will receive no further updates.
+    Please consider using an alternative or forking the project.
+  MSG
 
   s.metadata['rubygems_mfa_required'] = 'true'
 end
