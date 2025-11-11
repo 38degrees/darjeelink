@@ -1,3 +1,10 @@
+> [!CAUTION]
+> ## ⚠️ This project is no longer maintained ⚠️
+> 
+> This repository has been archived and is now read-only. No further updates, bug fixes, or support will be provided.
+> 
+> Feel free to fork this project if you'd like to continue development.
+----
 # Darjeelink
 
 ## What is it?
